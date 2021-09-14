@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -18,6 +20,13 @@ android {
 
     buildFeatures {
         viewBinding true
+    }
+
+    buildTypes.each {
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("apikey.properties").newDataInputStream())
+        def apiKey = properties.getProperty("X-RapidAPI-Key", "")
+        it.buildConfigField "String", "X_RAPID_API_KEY", apiKey
     }
 
     buildTypes {
