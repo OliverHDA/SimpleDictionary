@@ -1,9 +1,9 @@
-package ru.oliverhd.simpledictionary.repository
+package ru.oliverhd.simpledictionary.datasource
 
 import io.reactivex.Single
 import ru.oliverhd.simpledictionary.data.Translation
 
-interface Repository {
+interface RemoteDataSource {
 
     fun getTranslation(query: String): Single<Translation>
 }
