@@ -1,34 +1,23 @@
 package ru.oliverhd.simpledictionary.app
 
-import android.app.Application
-import ru.oliverhd.simpledictionary.datasource.RemoteDataSource
-import ru.oliverhd.simpledictionary.datasource.RemoteDataSourceImpl
-import ru.oliverhd.simpledictionary.datasource.retrofit.RetrofitFactory
-import ru.oliverhd.simpledictionary.presenter.MainPresenter
-import ru.oliverhd.simpledictionary.presenter.Presenter
-import ru.oliverhd.simpledictionary.repository.Repository
-import ru.oliverhd.simpledictionary.repository.RepositoryImpl
+import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
+import ru.oliverhd.simpledictionary.di.ApplicationComponent
+import ru.oliverhd.simpledictionary.di.DaggerApplicationComponent
 import ru.oliverhd.simpledictionary.scheduler.DefaultSchedulers
-import ru.oliverhd.simpledictionary.scheduler.Schedulers
 
-class App : Application() {
+class App : DaggerApplication() {
 
-    private lateinit var remoteDataSource: RemoteDataSource
-    private lateinit var repository: Repository
-    private lateinit var schedulers: Schedulers
-    lateinit var mainPresenter: Presenter
-
-    override fun onCreate() {
-        super.onCreate()
-        instance = this
-        remoteDataSource = RemoteDataSourceImpl(RetrofitFactory.create())
-        repository = RepositoryImpl(remoteDataSource)
-        schedulers = DefaultSchedulers()
-        mainPresenter = MainPresenter(repository, schedulers)
+    private val applicationComponent: ApplicationComponent by lazy {
+        DaggerApplicationComponent
+            .builder()
+            .withContext(applicationContext)
+            .apply {
+                withSchedulers(DefaultSchedulers())
+            }
+            .build()
     }
 
-    companion object {
-        lateinit var instance: App
-            private set
-    }
+    override fun applicationInjector(): AndroidInjector<App> =
+        applicationComponent
 }
