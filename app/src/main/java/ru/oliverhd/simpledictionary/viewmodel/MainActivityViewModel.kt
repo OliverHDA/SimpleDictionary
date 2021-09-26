@@ -6,9 +6,8 @@ import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 import ru.oliverhd.simpledictionary.interactor.MainInteractor
 import ru.oliverhd.simpledictionary.scheduler.Schedulers
-import javax.inject.Inject
 
-class MainActivityViewModel @Inject constructor(
+class MainActivityViewModel(
     private val interactor: MainInteractor,
     private val schedulers: Schedulers,
 ) :

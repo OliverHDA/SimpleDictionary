@@ -3,9 +3,8 @@ package ru.oliverhd.simpledictionary.datasource
 import io.reactivex.Single
 import ru.oliverhd.simpledictionary.data.Translation
 import ru.oliverhd.simpledictionary.datasource.retrofit.TranslateApi
-import javax.inject.Inject
 
-class RemoteDataSourceImpl @Inject constructor(private val translateApi: TranslateApi) :
+class RemoteDataSourceImpl(private val translateApi: TranslateApi) :
     RemoteDataSource {
 
     override fun getTranslation(query: String): Single<Translation> =
@@ -15,6 +14,4 @@ class RemoteDataSourceImpl @Inject constructor(private val translateApi: Transla
             query,
             "en|ru"
         )
-
-
 }

@@ -8,11 +8,11 @@ import ru.oliverhd.simpledictionary.data.Translation
 
 interface TranslateApi {
 
-@GET("get")
-fun getTranslation(
-    @Header("X-RapidAPI-Host") host: String,
-    @Header("X-RapidAPI-Key") key: String,
-    @Query("q") query: String,
-    @Query("langpair") langpair: String
-) : Single<Translation>
+    @GET("get")
+    fun getTranslation(
+        @Header("X-RapidAPI-Host") host: String,
+        @Header("X-RapidAPI-Key") key: String,
+        @Query("q") query: String,
+        @Query("langpair") langpair: String
+    ): Single<Translation>
 }
