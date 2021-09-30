@@ -3,4 +3,8 @@
     <string name="english_to_russian_translation">English To Russian Translation</string>
     <string name="translate">Translate</string>
     <string name="translation">Перевод</string>
+    <string name="enter_word">Enter word</string>
+    <string name="title_home">Home</string>
+    <string name="title_favorite">Favorite</string>
+    <string name="history">History</string>
 </resources>
