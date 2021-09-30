@@ -17,7 +17,8 @@ import ru.oliverhd.simpledictionary.repository.Repository
 import ru.oliverhd.simpledictionary.repository.RepositoryImpl
 import ru.oliverhd.simpledictionary.scheduler.DefaultSchedulers
 import ru.oliverhd.simpledictionary.scheduler.Schedulers
-import ru.oliverhd.simpledictionary.viewmodel.MainActivityViewModel
+import ru.oliverhd.simpledictionary.viewmodel.HistoryAndFavoriteViewModel
+import ru.oliverhd.simpledictionary.viewmodel.MainFragmentViewModel
 
 object Di {
 
@@ -43,7 +44,13 @@ object Di {
         single<MainInteractor> { MainInteractorImpl(get()) }
         single<Schedulers> { DefaultSchedulers() }
         viewModel {
-            MainActivityViewModel(
+            MainFragmentViewModel(
+                interactor = get(),
+                schedulers = get()
+            )
+        }
+        viewModel {
+            HistoryAndFavoriteViewModel(
                 interactor = get(),
                 schedulers = get()
             )

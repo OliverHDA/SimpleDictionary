@@ -7,12 +7,10 @@ import io.reactivex.disposables.CompositeDisposable
 import ru.oliverhd.simpledictionary.interactor.MainInteractor
 import ru.oliverhd.simpledictionary.scheduler.Schedulers
 
-class MainActivityViewModel(
+class MainFragmentViewModel(
     private val interactor: MainInteractor,
     private val schedulers: Schedulers,
-) :
-    ViewModel() {
-
+) : ViewModel() {
     private val _liveData = MutableLiveData<String>()
 
     fun getLiveData(): LiveData<String> = _liveData
